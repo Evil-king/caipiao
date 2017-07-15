@@ -11,14 +11,14 @@
                         http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
      
      <!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->
-	<!-- <context:component-scan base-package="com.hwq.web.controller" /> -->
+	<!-- <context:component-scan base-package="com.caipiao.controller" /> -->
                  
 	<!-- 自定义处理异常类 -->
-	<!-- <bean id="exceptionHandler" class="com.hwq.web.exception.ExceptionHandler"/>
+	<!-- <bean id="exceptionHandler" class="com.caipiao.exception.ExceptionHandler"/>
 	
-	<bean id="customObjectMapper" class="com.hwq.web.util.CustomObjectMapper"></bean> -->
+	<bean id="customObjectMapper" class="com.caipiao.util.CustomObjectMapper"></bean>
 	
-	<!-- <bean id="jsonConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+	<bean id="jsonConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
       <property name="objectMapper" ref="customObjectMapper"></property>
     </bean> -->
 	
@@ -44,14 +44,14 @@
 	</bean>
 	
 	<!-- 配置文件上传，如果没有使用文件上传可以不用配置，当然如果不配，那么配置文件中也不必引入上传组件包 -->
-	<bean id="multipartResolver"  
+	<!-- <bean id="multipartResolver"  
         class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  
-        <!-- 默认编码 -->
+        默认编码
         <property name="defaultEncoding" value="utf-8" />  
-        <!-- 文件大小最大值 -->
+        文件大小最大值
         <property name="maxUploadSize" value="10485760000" />  
-        <!-- 内存中的最大值 -->
+        内存中的最大值
         <property name="maxInMemorySize" value="40960" />  
-    </bean> 
+    </bean>  -->
 	
 </beans>
