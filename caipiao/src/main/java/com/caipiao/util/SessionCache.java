@@ -10,11 +10,6 @@ public class SessionCache {
     
     private static ShardedJedis j;
 
-//    static {
-//        ShardedJedisPool pool = SpringContextUtil.getBean("shardedJedisPool", ShardedJedisPool.class);
-//        j = pool.getResource();
-//    }
-
     /**
      * @方法名： setSession
      * @功能描述: 保持会话

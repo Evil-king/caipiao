@@ -1,17 +1,45 @@
 package com.caipiao.dao;
 
+
+
 import com.caipiao.pojo.User;
 
 public interface UserMapper {
-    int deleteByPrimaryKey(Integer id);
+	
+	/**
+	 * 登录
+	 * @param us
+	 * @return
+	 */
+	int login(User us);
 
-    int insert(User record);
+	/**
+	 * 更新密码
+	 * @param user
+	 * @return
+	 */
+	int updateByPasswd(User user);
 
-    int insertSelective(User record);
+	/**
+	 * 通过参数检查是否存在对象
+	 * @param us
+	 * @return
+	 */
+	User checkParameter(User us);
 
-    User selectByPrimaryKey(Integer id);
+	/**
+	 * 创建新用户
+	 * @param user
+	 * @return
+	 */
+	int create(User user);
+	
+	/**
+	 * 根据手机号查询
+	 * @param uu
+	 * @return
+	 */
+	User checkByPhone(User uu);
 
-    int updateByPrimaryKeySelective(User record);
 
-    int updateByPrimaryKey(User record);
 }

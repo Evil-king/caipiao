@@ -19,7 +19,7 @@ public class ExceptionHandler implements HandlerExceptionResolver{
 	        model.put("ex", ex);  
 	        Map<String,Object> map=new HashMap<String,Object>();
 	        if(ex instanceof BaseException){
-	        		map.put("code",((BaseException) ex).getCode());
+	        		map.put("status",((BaseException) ex).getStatus());
 	        		map.put("msg", ((BaseException) ex).getMsg());
 	        }
 		return new ModelAndView(new MappingJackson2JsonView(),map);

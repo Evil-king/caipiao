@@ -6,6 +6,8 @@ public class User {
     private Integer id;
 
     private String name;
+    
+    private String phone;
 
     private String password;
 
@@ -14,52 +16,71 @@ public class User {
     private Date modifiedTime;
 
     private Date createTime;
+    
+    private String registerCode;
 
-    public Integer getId() {
-        return id;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public String getPhone() {
+		return phone;
+	}
 
-    public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
-    }
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 
-    public String getCode() {
-        return code;
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    public void setCode(String code) {
-        this.code = code == null ? null : code.trim();
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-    public Date getModifiedTime() {
-        return modifiedTime;
-    }
+	public String getCode() {
+		return code;
+	}
 
-    public void setModifiedTime(Date modifiedTime) {
-        this.modifiedTime = modifiedTime;
-    }
+	public void setCode(String code) {
+		this.code = code;
+	}
 
-    public Date getCreateTime() {
-        return createTime;
-    }
+	public Date getModifiedTime() {
+		return modifiedTime;
+	}
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
+	public void setModifiedTime(Date modifiedTime) {
+		this.modifiedTime = modifiedTime;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	public String getRegisterCode() {
+		return registerCode;
+	}
+
+	public void setRegisterCode(String registerCode) {
+		this.registerCode = registerCode;
+	}
+    
 }
