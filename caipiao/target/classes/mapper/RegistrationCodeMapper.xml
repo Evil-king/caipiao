@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.caipiao.dao.RegistrationCodeMapper" >
+  <resultMap id="RM_RegistrationCode" type="com.caipiao.pojo.RegistrationCode" >
+    <id column="ID" property="id" jdbcType="INTEGER"/>
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="MODIFIED_TIME" property="modifiedTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CODE" property="code" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <resultMap id="RM_RegistrationCodeVO" type="com.caipiao.vo.RegistrationCodeVO" extends="RM_RegistrationCode">
+    <result column="COUNT" property="count" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <select id="queryParameter" resultMap="RM_RegistrationCode" parameterType="com.caipiao.pojo.RegistrationCode" >
+    select ID,PHONE,MODIFIED_TIME,CREATE_TIME, CODE,TYPE from registration_code
+    where CODE = #{code} and TYPE = 0
+  </select>
+  
+  <select id="getListData" resultMap="RM_RegistrationCodeVO"  parameterType="java.lang.Integer" >
+    select ID,PHONE,MODIFIED_TIME,CREATE_TIME, CODE,TYPE from registration_code
+    where TYPE = 0 limit #{count}
+  </select>
+  
+  
+  
+  <insert id="insert" parameterType="com.caipiao.pojo.RegistrationCode" >
+    insert into registration_code (
+   	  ID, 
+   	  PHONE,
+      MODIFIED_TIME, 
+      CREATE_TIME,
+      CODE,
+      TYPE
+      )
+    values (
+      #{id}, 
+      #{phone}, 
+      now(), 
+      now(),
+      #{code},
+      #{type}
+      )
+  </insert>
+  
+  <update id="updateParameter" parameterType="com.caipiao.pojo.RegistrationCode" >
+    update registration_code
+    set MODIFIED_TIME = now()
+    	  <if test="phone != null and phone != ''">,PHONE = #{phone}</if>
+    	  <if test="code != null and code != ''">,CODE = #{code}</if>
+      <if test="type != null and type !='' ">,TYPE = #{type}</if>
+    where ID = #{id}
+  </update>
+  
+</mapper>

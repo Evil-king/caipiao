@@ -5,19 +5,22 @@ import java.util.Date;
 public class User {
     private Integer id;
 
-    private String name;
+    private String phone;//电话
+
+    private String password;//密码
+
+    private Date modifiedTime;//修改时间
+
+    private Date createTime;//创建时间
     
-    private String phone;
-
-    private String password;
-
-    private String code;
-
-    private Date modifiedTime;
-
-    private Date createTime;
+    private String registerCode;//注册码
     
-    private String registerCode;
+    private Integer type;//用户类型
+    
+    private String token;//判断用户唯一标识
+    
+    private String limitData;//启用禁用
+    
 
 	public Integer getId() {
 		return id;
@@ -25,14 +28,6 @@ public class User {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public String getPhone() {
@@ -49,14 +44,6 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
 	}
 
 	public Date getModifiedTime() {
@@ -82,5 +69,30 @@ public class User {
 	public void setRegisterCode(String registerCode) {
 		this.registerCode = registerCode;
 	}
-    
+
+	public Integer getType() {
+		return type;
+	}
+
+	public void setType(Integer type) {
+		this.type = type;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+	public String getLimitData() {
+		return limitData;
+	}
+
+	public void setLimitData(String limitData) {
+		this.limitData = limitData;
+	}
+	
+	
 }

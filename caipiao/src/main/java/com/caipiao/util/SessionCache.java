@@ -19,7 +19,7 @@ public class SessionCache {
         j.set(sessionId, String.valueOf(memberId));
         j.expire(sessionId, 30 * 60);
     }
-
+    
     /**
      * @方法名： getSession
      * @功能描述: 取得用户id

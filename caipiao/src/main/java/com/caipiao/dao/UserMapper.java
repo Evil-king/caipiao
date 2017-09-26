@@ -1,8 +1,11 @@
 package com.caipiao.dao;
 
-
+import java.util.List;
 
 import com.caipiao.pojo.User;
+import com.caipiao.vo.ResultJson;
+import com.caipiao.vo.ResultPagination;
+import com.caipiao.vo.UserPage;
 
 public interface UserMapper {
 	
@@ -40,6 +43,40 @@ public interface UserMapper {
 	 * @return
 	 */
 	User checkByPhone(User uu);
-
+	
+	/**
+	 * 
+	 * @param user
+	 * @return
+	 */
+	User queryByUserId(User user);
+	
+	/**
+	 * 
+	 * @param user
+	 * @return
+	 */
+	User queryByParam(User user);
+	
+	/**
+	 * 
+	 * @param user
+	 * @return
+	 */
+	int updateByParam(User user);
+	
+	/**
+	 * page分页查询
+	 * @return
+	 */
+	List<User> list(ResultPagination userPage);
+	
+	/**
+	 * 统计
+	 * @param userPage
+	 * @return
+	 */
+	int total(ResultPagination userPage);
+	
 
 }

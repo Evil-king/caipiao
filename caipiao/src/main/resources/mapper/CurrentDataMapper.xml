@@ -3,91 +3,33 @@
 <mapper namespace="com.caipiao.dao.CurrentDataMapper" >
   <resultMap id="BaseResultMap" type="com.caipiao.pojo.CurrentData" >
     <id column="ID" property="id" jdbcType="INTEGER" />
-    <result column="DATE_NUM" property="dateNum" jdbcType="INTEGER" />
-    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
-    <result column="OPEN_NUM" property="openNum" jdbcType="INTEGER" />
-    <result column="OPEN_WAY" property="openWay" jdbcType="VARCHAR" />
+    <result column="EXPECT" property="expect" jdbcType="VARCHAR" />
+    <result column="OPEN_CODE" property="openCode" jdbcType="VARCHAR" />
+    <result column="OPEN_TIME" property="openTime" jdbcType="TIMESTAMP" />
+    <result column="MODIFIED_TIME" property="modifiedTime" jdbcType="TIMESTAMP" />
   </resultMap>
-  <sql id="Base_Column_List" >
-    ID, DATE_NUM, UPDATE_TIME, OPEN_NUM, OPEN_WAY
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
+
+
+	<resultMap id="BaseResultMapVO" type="com.caipiao.vo.CurrentVO" extends="BaseResultMap">
+    	<result column="NUM" property="num" jdbcType="INTEGER" />
+    </resultMap>
+  <select id="queryToDataOne" resultMap="BaseResultMapVO" parameterType="int" >
+    select DISTINCT EXPECT, OPEN_CODE, OPEN_TIME
     from current_data
-    where ID = #{id,jdbcType=INTEGER}
+    ORDER BY OPEN_TIME desc LIMIT #{num}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from current_data
-    where ID = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.caipiao.pojo.CurrentData" >
-    insert into current_data (ID, DATE_NUM, UPDATE_TIME, 
-      OPEN_NUM, OPEN_WAY)
-    values (#{id,jdbcType=INTEGER}, #{dateNum,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{openNum,jdbcType=INTEGER}, #{openWay,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.caipiao.pojo.CurrentData" >
-    insert into current_data
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        ID,
-      </if>
-      <if test="dateNum != null" >
-        DATE_NUM,
-      </if>
-      <if test="updateTime != null" >
-        UPDATE_TIME,
-      </if>
-      <if test="openNum != null" >
-        OPEN_NUM,
-      </if>
-      <if test="openWay != null" >
-        OPEN_WAY,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="dateNum != null" >
-        #{dateNum,jdbcType=INTEGER},
-      </if>
-      <if test="updateTime != null" >
-        #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="openNum != null" >
-        #{openNum,jdbcType=INTEGER},
-      </if>
-      <if test="openWay != null" >
-        #{openWay,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.caipiao.pojo.CurrentData" >
-    update current_data
-    <set >
-      <if test="dateNum != null" >
-        DATE_NUM = #{dateNum,jdbcType=INTEGER},
-      </if>
-      <if test="updateTime != null" >
-        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="openNum != null" >
-        OPEN_NUM = #{openNum,jdbcType=INTEGER},
-      </if>
-      <if test="openWay != null" >
-        OPEN_WAY = #{openWay,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where ID = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.caipiao.pojo.CurrentData" >
-    update current_data
-    set DATE_NUM = #{dateNum,jdbcType=INTEGER},
-      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
-      OPEN_NUM = #{openNum,jdbcType=INTEGER},
-      OPEN_WAY = #{openWay,jdbcType=VARCHAR}
-    where ID = #{id,jdbcType=INTEGER}
-  </update>
+  
+  <select id="queryLimitMore" resultMap="BaseResultMapVO" parameterType="int" >
+    select DISTINCT EXPECT, OPEN_CODE, OPEN_TIME
+    from current_data
+    ORDER BY OPEN_TIME desc LIMIT #{num}
+  </select>
+  
+  <select id="queryAll" resultMap="BaseResultMapVO">
+    select DISTINCT EXPECT, OPEN_CODE, OPEN_TIME
+    from current_data
+    ORDER BY OPEN_TIME desc 
+  </select>
+  
+  
 </mapper>

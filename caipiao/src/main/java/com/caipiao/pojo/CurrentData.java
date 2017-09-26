@@ -1,17 +1,14 @@
 package com.caipiao.pojo;
 
-import java.util.Date;
-
 public class CurrentData {
     private Integer id;
 
-    private Integer dateNum;
+    private String expect;
 
-    private Date updateTime;
+    private String openCode;
 
-    private Integer openNum;
+    private String openTime;
 
-    private String openWay;
 
 	public Integer getId() {
 		return id;
@@ -21,37 +18,36 @@ public class CurrentData {
 		this.id = id;
 	}
 
-	public Integer getDateNum() {
-		return dateNum;
+	public String getExpect() {
+		return expect;
 	}
 
-	public void setDateNum(Integer dateNum) {
-		this.dateNum = dateNum;
+	public void setExpect(String expect) {
+		this.expect = expect;
 	}
 
-	public Date getUpdateTime() {
-		return updateTime;
+	public String getOpenCode() {
+		return openCode;
 	}
 
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
+	public void setOpenCode(String openCode) {
+		this.openCode = openCode;
 	}
 
-	public Integer getOpenNum() {
-		return openNum;
+
+	public String getOpenTime() {
+		return openTime;
 	}
 
-	public void setOpenNum(Integer openNum) {
-		this.openNum = openNum;
+	public void setOpenTime(String openTime) {
+		this.openTime = openTime;
 	}
 
-	public String getOpenWay() {
-		return openWay;
+	@Override
+	public String toString() {
+		return "CurrentData [id=" + id + ", expect=" + expect + ", openCode=" + openCode + ", openTime=" + openTime
+				+ "]";
 	}
-
-	public void setOpenWay(String openWay) {
-		this.openWay = openWay;
-	}
-
-    
+	
+   
 }

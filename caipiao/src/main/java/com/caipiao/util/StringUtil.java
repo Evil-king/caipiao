@@ -514,7 +514,6 @@ public class StringUtil extends StringUtils{
 	}
 	
 	
-	
 	/**
 	 * @param args
 	 */

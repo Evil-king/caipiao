@@ -1,28 +1,42 @@
 package com.caipiao.service;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ArithmeticService {
 	
 	/**
-	 * 首尾和
+	 * 四种玩法
 	 * @return
 	 */
-	List<String> sum(int num);
+	Map<String, Map<String, List<String>>> primacy();
+	
 	/**
-	 * 方程式
+	 * 带参数的四种玩法
+	 * @param type
 	 * @return
 	 */
-	List<String> equation();
+	Map<String, Map<String, List<String>>> primacyParam(String[] type);
+	
+	
 	/**
-	 * 胆组法
+	 * 不带方法标示
+	 * @param type
 	 * @return
 	 */
-	List<String> group();
+	public Map<String, List<String>> primacyParamNo(String[] type);
+	
 	/**
-	 * 垃圾复式
+	 * 通过参数查询前三 中三 后三的值
+	 * @param type
+	 * @param openCode
 	 * @return
 	 */
-	List<String> rubbish();
-
+	public List<String> getPrizePrarm(String type, String openCode);
+	
+	/**
+	 * 判断所有前三 中三 后三是否中奖
+	 * @return
+	 */
+	public Map<String, Map<String, String>> getPrize();
 }

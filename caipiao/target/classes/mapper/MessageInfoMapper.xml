@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.caipiao.dao.MessageInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.caipiao.pojo.MessageInfo" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+     <result column="DETAIL" property="detail" jdbcType="VARCHAR" />
+    <result column="TITLE" property="title" jdbcType="VARCHAR" />
+    <result column="USER_ID" property="userId" jdbcType="INTEGER" />
+  </resultMap>
+
+  <select id="queryByParameter" resultMap="BaseResultMap" parameterType="com.caipiao.pojo.MessageInfo" >
+    select 
+     ID,DETAIL,USER_ID,TITLE
+    from message_info
+    where USER_ID = #{userId}
+  </select>
+  
+  <select id="queryByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+     ID,DETAIL,USER_ID,TITLE
+    from message_info
+    where USER_ID = #{userId}
+  </select>
+  
+  <insert id="insert" parameterType="com.caipiao.pojo.MessageInfo" >
+    insert into message_info (ID, USER_ID,DETAIL,TITLE)
+    values (#{id}, #{userId},#{detail},#{title})
+  </insert>
+ 
+  <update id="updateByParameter" parameterType="com.caipiao.pojo.MessageInfo" >
+    update message_info set 
+      <if test="detail != null and detail !='' ">DETAIL = #{detail}</if>
+      <if test="title != null and title !=''">,TITLE = #{title}</if>
+    where USER_ID = #{userId}
+  </update>
+</mapper>

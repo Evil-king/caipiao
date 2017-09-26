@@ -3,54 +3,86 @@
 <mapper namespace="com.caipiao.dao.UserMapper" >
   <resultMap id="RM_User" type="com.caipiao.pojo.User" >
     <id column="ID" property="id" jdbcType="INTEGER"/>
-    <result column="NAME" property="name" jdbcType="VARCHAR" />
     <result column="PHONE" property="phone" jdbcType="VARCHAR" />
     <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
-    <result column="CODE" property="code" jdbcType="VARCHAR" />
     <result column="MODIFIED_TIME" property="modifiedTime" jdbcType="TIMESTAMP" />
     <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
     <result column="REGISTER_CODE" property="registerCode" jdbcType="VARCHAR" />
+    <result column="TOKEN" property="token" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+    <result column="LIMIT_DATA" property="limitData" jdbcType="VARCHAR" />
   </resultMap>
   
   <select id="checkParameter" resultMap="RM_User" parameterType="com.caipiao.pojo.User" >
-    select ID,NAME,PHONE,PASSWORD,CODE,MODIFIED_TIME,CREATE_TIME, REGISTER_CODE from user
+    select ID,PHONE,PASSWORD,MODIFIED_TIME,CREATE_TIME, REGISTER_CODE,TYPE, TOKEN, LIMIT_DATA from user
     where PHONE = #{phone} and PASSWORD = #{password}
   </select>
   
   <select id="checkByPhone" resultMap="RM_User" parameterType="com.caipiao.pojo.User" >
-    select ID,NAME,PHONE,PASSWORD,CODE,MODIFIED_TIME,CREATE_TIME, REGISTER_CODE from user
+    select ID,PHONE,PASSWORD,MODIFIED_TIME,CREATE_TIME, REGISTER_CODE,TYPE, TOKEN, LIMIT_DATA from user
     where PHONE = #{phone}
   </select>
   
+  <select id="queryByUserId" resultMap="RM_User" parameterType="com.caipiao.pojo.User" >
+    select ID,PHONE,PASSWORD,MODIFIED_TIME,CREATE_TIME, REGISTER_CODE,TYPE, TOKEN, LIMIT_DATA from user
+    where ID = #{id}
+  </select>
+  
+  <select id="queryByParam" resultMap="RM_User" parameterType="com.caipiao.pojo.User" >
+    select ID,PHONE,PASSWORD,MODIFIED_TIME,CREATE_TIME, REGISTER_CODE,TYPE, TOKEN, LIMIT_DATA from user
+    where PHONE = #{phone}
+  </select>
+  
+  <select id="list" resultMap="RM_User" parameterType="com.caipiao.pojo.User" >
+    select ID,PHONE,PASSWORD,MODIFIED_TIME,CREATE_TIME, REGISTER_CODE,TYPE, TOKEN, LIMIT_DATA from user
+    where TOKEN IS NOT NULL LIMIT #{page}, #{rows};
+  </select>
+  
+  <select id="total" parameterType="java.lang.Integer" resultType="java.lang.Integer" >
+    select count(*) from user
+    where TOKEN IS NOT NULL
+  </select>
+  
+  
   <insert id="create" parameterType="com.caipiao.pojo.User" >
     insert into user (
-    	  ID, 
-    	  NAME, 
-    	  PHONE, 
-    	  PASSWORD, 
-      CODE, 
+   	  ID, 
+   	  PHONE,
+   	  PASSWORD, 
       MODIFIED_TIME, 
       CREATE_TIME,
-      REGISTER_CODE
+      REGISTER_CODE,
+      TYPE,
+      TOKEN,
+      LIMIT_DATA
       )
     values (
       #{id}, 
-      #{name},
       #{phone}, 
       #{password}, 
-      #{code}, 
       now(), 
       now(),
-      #{registerCode}
+      #{registerCode},
+      #{type},
+      #{token},
+      #{limitData}
       )
   </insert>
   
   <update id="updateByPasswd" parameterType="com.caipiao.pojo.User" >
     update user
-    set MODIFIED_TIME = #{now}
-    	  <if test="name != null and name !='' ">,NAME = #{name}</if>
-    	  <if test="phone != null and phone != ''">,PHONE = #{phone}</if>,
+    set MODIFIED_TIME = now()
+    	  <if test="phone != null and phone != ''">,PHONE = #{phone}</if>
       <if test="password != null and password !='' ">,PASSWORD = #{password}</if>
+      <if test="type != null and type !='' ">,TYPE = #{type}</if>
     where ID = #{id}
+  </update>
+  
+  <update id="updateByParam" parameterType="com.caipiao.pojo.User" >
+    update user
+    set MODIFIED_TIME = now(),TOKEN = #{token}
+    	  <if test="limitData != null and limitData !='' ">,LIMIT_DATA = #{limitData}</if>
+    	  <if test="password != null and password !='' ">,PASSWORD = #{password}</if>
+    where PHONE = #{phone}
   </update>
 </mapper>
